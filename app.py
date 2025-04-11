@@ -27,3 +27,14 @@ def get_reviews():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
+
+@app.route('/rating')
+def get_rating():
+    url = (
+        f"https://maps.googleapis.com/maps/api/place/details/json?"
+        f"place_id={PLACE_ID}&fields=rating&key={GOOGLE_API_KEY}"
+    )
+    response = requests.get(url)
+    data = response.json()
+    rating = data.get("result", {}).get("rating", None)
+    return jsonify({"rating": rating})
