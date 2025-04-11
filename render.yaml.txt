@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: google-reviews
+    env: python
+    buildCommand: ""
+    startCommand: "python app.py"
