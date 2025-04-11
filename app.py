@@ -7,6 +7,10 @@ app = Flask(__name__)
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 PLACE_ID = os.getenv("PLACE_ID")
 
+@app.route('/')
+def index():
+    return "Google Reviews API is running. Go to /reviews to see reviews."
+
 @app.route('/reviews')
 def get_reviews():
     url = (
