@@ -23,11 +23,6 @@ def get_reviews():
     data = response.json()
     return jsonify(data)
 
-# ✅ This part is what was missing:
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
-
 @app.route('/rating')
 def get_rating():
     url = (
@@ -38,3 +33,7 @@ def get_rating():
     data = response.json()
     rating = data.get("result", {}).get("rating", None)
     return jsonify({"rating": rating})
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
